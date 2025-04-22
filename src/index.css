@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gradient-primary: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  --gradient-secondary: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  --gradient-accent: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+  --gradient-dark: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Base Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Transition Classes */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Custom Classes */
+.glass-morphism {
+  @apply backdrop-blur-lg bg-white/80 border border-white/20;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: var(--gradient-primary);
+}
+
+.gradient-border {
+  @apply relative;
+  background: linear-gradient(white, white) padding-box,
+              var(--gradient-primary) border-box;
+  border: 2px solid transparent;
+}
+
+.neo-brutalism {
+  @apply shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] border-2 border-black;
+  transition: all 0.2s ease;
+}
+
+.neo-brutalism:hover {
+  @apply shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+  transform: translate(-3px, -3px);
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+}
+
+.button-gradient {
+  @apply relative overflow-hidden transition-all duration-300;
+  background-image: var(--gradient-primary);
+}
+
+.button-gradient:hover {
+  @apply shadow-lg scale-105;
+}
+
+.button-gradient::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background-image: var(--gradient-secondary);
+}
+
+.button-gradient:hover::before {
+  @apply opacity-100;
+}
+
+/* Animation Utilities */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+.shimmer-animation {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.bounce-animation {
+  animation: bounce 2s infinite;
+}
+
+.spin-animation {
+  animation: spin 20s linear infinite;
+}
+
+/* Component Specific Styles */
+.weather-card {
+  @apply glass-morphism rounded-xl p-6 transition-all duration-300;
+}
+
+.weather-card:hover {
+  @apply shadow-lg scale-105;
+}
+
+.achievement-card {
+  @apply neo-brutalism rounded-xl p-6 bg-white;
+}
+
+.leaderboard-item {
+  @apply glass-morphism rounded-lg p-4 transition-all duration-300;
+}
+
+.leaderboard-item:hover {
+  @apply shadow-lg scale-105;
+}
+
+.stats-panel {
+  @apply gradient-border rounded-xl p-6 bg-white;
+}
+
+.progress-bar-container {
+  @apply h-2 rounded-full bg-gray-200 overflow-hidden;
+}
+
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all duration-500;
+  background-image: var(--gradient-primary);
+}
+
+/* Theme Transitions */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .glass-morphism {
+    @apply backdrop-blur-sm;
+  }
+  
+  .neo-brutalism {
+    @apply shadow-[3px_3px_0px_0px_rgba(0,0,0,1)];
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gradient-primary: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    --gradient-secondary: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    --gradient-accent: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+    --gradient-dark: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  }
+
+  .glass-morphism {
+    @apply bg-gray-900/80 border-gray-800/20;
+  }
+
+  .neo-brutalism {
+    @apply border-white shadow-[5px_5px_0px_0px_rgba(255,255,255,1)];
+  }
+}
+
+/* Hover Scale */
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+/* Environment Partner Icons */
+.partner-icon {
+  @apply transition-all duration-300;
+}
+
+.partner-icon:hover {
+  @apply transform scale-110;
+}
+
+.partner-icon-description {
+  @apply opacity-0 transition-opacity duration-300 absolute -bottom-20 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-lg text-xs text-gray-700 w-48 text-center;
+}
+
+.partner-icon:hover .partner-icon-description {
+  @apply opacity-100;
+}
